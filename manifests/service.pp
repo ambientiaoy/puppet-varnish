@@ -3,11 +3,13 @@
 # This class is meant to be called from varnish
 # It ensure the service is running
 #
-class varnish::service {
+class varnish::service(
+  $service_name = $varnish::params::service_name
+) {
   include varnish
   include varnish::params
 
-  service { $varnish::params::service_name:
+  service { $service_name:
     ensure     => running,
     enable     => true,
     hasstatus  => true,
