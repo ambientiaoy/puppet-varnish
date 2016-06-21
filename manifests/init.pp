@@ -79,8 +79,9 @@ class varnish (
   }
 
   class { 'varnish::secret':
-    secret  => $secret,
-    require => Class['varnish::install'],
+    secret      => $secret,
+    secret_file => $secret_file,
+    require     => Class['varnish::install'],
   }
 
   class { 'varnish::install': } ->
