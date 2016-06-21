@@ -2,7 +2,9 @@
 #
 # This class is called from varnish
 #
-class varnish::config {
+class varnish::config (
+  $varnish_sysconfig = $varnish::params::sysconfig
+) {
 
   case $::osfamily {
     'RedHat', 'Amazon': {
@@ -30,7 +32,7 @@ class varnish::config {
     }
   }
 
-  file { $varnish::params::sysconfig:
+  file { $varnish_sysconfig:
     owner   => 'root',
     group   => 'root',
     mode    => '0644',
